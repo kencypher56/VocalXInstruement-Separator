@@ -1,138 +1,112 @@
 # 🎤 VocalxInstrument Separator 🎸
 
-**AI-powered audio exorcist** – separate vocals, instruments, and background from any song, and convert videos to audio, all on CPU. Built with spooky Cindy-style logs and hacker-terminal vibes.
+**The AI-powered audio exorcist.** Separate vocals, instruments, and background elements from any song, or convert video to audio—all on your CPU. Featuring spooky "Cindy-style" logs and a high-end hacker terminal aesthetic.
 
-
+---
 
 ## ✨ Features
 
-- 🎵 **Source separation** – extract `vocals`, `instruments`, `background` from `.mp3`, `.wav`, `.flac`, `.ogg`
-- 🥁 **Choose stem count** – 2, 4, or 5 stems (more stems = finer separation)
-- 💾 **Automatic model caching** – downloads pretrained models into `pretrained_models/`
-- 🎬 **Video to audio converter** – convert `.mp4`, `.mkv`, `.avi` … to `.mp3`, `.wav`, `.flac`
-- 🧠 **Smart memory check** – recommends best stem count based on free RAM
-- 🖥️ **Tab completion** – for all file/folder prompts
-- 🌈 **Rich terminal UI** – progress bars, spinners, and Cindy’s narration
-- 🌍 **Cross-platform** – Linux, macOS, Windows (CPU only)
-- ⚡ **Two interfaces** – interactive menu or CLI commands
+* 🎵 **Source Separation** – Extract `vocals`, `instruments`, and `background` from `.mp3`, `.wav`, `.flac`, and `.ogg`.
+* 🥁 **Variable Stem Counts** – Choose between 2, 4, or 5 stems for surgical precision.
+* 💾 **Automatic Model Caching** – Pretrained models download automatically to `pretrained_models/`.
+* 🎬 **Video-to-Audio** – Convert `.mp4`, `.mkv`, `.avi`, and more to high-quality audio.
+* 🧠 **Smart RAM Guard** – Automatically recommends the best stem count based on your available hardware.
+* 🖥️ **Tab Completion** – Full filesystem autocomplete for all file and folder prompts.
+* 🌈 **Rich Terminal UI** – Narrative logs, progress bars, and spinners powered by `Rich`.
 
-
+---
 
 ## 🧩 What is a Stem?
 
-In audio processing, a **stem** is an isolated component of a mix.
+In audio engineering, a **stem** is an isolated component of a mix. This tool offers three levels of "exorcism":
 
-- 🎤 **2 stems** – vocals + accompaniment
-- 🥁 **4 stems** – vocals + drums + bass + other
-- 🎹 **5 stems** – adds piano to the 4‑stem set
+| Mode | Output Components |
+| :--- | :--- |
+| **2 Stems** | Vocals + Accompaniment |
+| **4 Stems** | Vocals + Drums + Bass + Other |
+| **5 Stems** | Vocals + Drums + Bass + Piano + Other |
 
-The tool combines all non‑vocal stems into one **instruments** track and computes the **background** as the original minus vocals minus instruments.
+> [!NOTE]
+> The tool intelligently combines non-vocal stems into a master **Instruments** track and calculates the **Background** noise floor by subtracting vocals and instruments from the original source.
 
+---
 
+## 📦 Tech Stack
 
-## 📦 Models
+* **Engine:** [Spleeter](https://github.com/deezer/spleeter) (by Deezer)
+* **Audio Processing:** [Librosa](https://librosa.org/), [PyDub](https://github.com/jiaaro/pydub), [NumPy](https://numpy.org/), [SciPy](https://scipy.org/)
+* **Interface:** [Typer](https://typer.tiangolo.com/), [Rich](https://rich.readthedocs.io/), [Prompt Toolkit](https://python-prompt-toolkit.readthedocs.io/)
+* **System:** [Psutil](https://psutil.readthedocs.io/)
 
-We use **Spleeter** pretrained models by Deezer. The models are downloaded automatically on first use and stored in:
-pretrained_models/
-├── 2stems/
-├── 4stems/
-└── 5stems/
-
-No manual download required – the tool handles everything.
-
-
-
-## 🛠️ Tech Stack
-
-- **[Spleeter](https://github.com/deezer/spleeter)** – separation engine
-- **[Librosa](https://librosa.org/)** – audio analysis
-- **[PyDub](https://github.com/jiaaro/pydub)** – MP3 export & video conversion (requires ffmpeg)
-- **[Typer](https://typer.tiangolo.com/)** – CLI interface
-- **[Rich](https://rich.readthedocs.io/)** – beautiful terminal formatting
-- **[Prompt Toolkit](https://python-prompt-toolkit.readthedocs.io/)** – tab completion
-- **[NumPy](https://numpy.org/)** / **[SciPy](https://scipy.org/)** – numerical heavy lifting
-- **[Psutil](https://psutil.readthedocs.io/)** – memory checks
-
-
+---
 
 ## 📁 Project Structure
+
 vocalxinstrument-separator/
-│
-├── run.py # main launcher (auto‑activates env)
-├── cli.py # Typer CLI commands
-├── interactive.py # interactive menu (Cindy style)
-├── setup.py # environment setup (venv / conda)
-├── requirements.txt # Python dependencies
-├── README.md # this file
-│
-├── core/ # core modules
-│ ├── separator.py # separation logic
-│ ├── converter.py # video → audio
-│ ├── processor.py # audio resampling
-│ └── exporter.py # MP3 export
-│
-├── utils/ # helper modules
-│ ├── logger.py # Cindy logs
-│ ├── paths.py # cross‑platform desktop path
-│ ├── sysinfo.py # system info display
-│ └── progress.py # progress bar utilities
-│
-├── pretrained_models/ # downloaded Spleeter models (created automatically)
+├── run.py              # Main launcher (auto-activates environment)
+├── cli.py              # Typer CLI command definitions
+├── interactive.py      # Interactive Cindy-style menu
+├── setup.py            # Env setup (Venv / Conda)
+├── requirements.txt    # Dependency list
+├── core/               # Separation & conversion logic
+│   ├── separator.py    # Spleeter implementation
+│   └── converter.py    # Video → Audio logic
+└── utils/              # UI & System helpers
+    ├── logger.py       # "Cindy" themed logging
+    └── sysinfo.py      # Hardware monitoring
 
+🚀 Installation
+Option 1: Automatic Setup (Recommended)
 
-## 🚀 Installation
-
-### Option 1: Automatic setup (recommended)
-
-Run the setup script and choose your preferred environment manager:
+The setup script handles environment creation and checks for ffmpeg.
 
 
 python setup.py
-    1) Python venv – creates a local .venv folder
 
-    2) Conda – creates a vocalx environment with Python 3.9
+You will be prompted to choose:
 
-If you choose Conda and it’s not installed, the script offers to download and install Miniconda automatically (Linux/macOS). After installation, it creates the environment and installs all dependencies.
+    Python venv: Creates a local .venv folder.
 
-The script also checks for ffmpeg (required for MP3 export & video conversion) and gives installation hints if missing.
-Option 2: Manual installation (experts)
+    Conda: Creates a vocalx environment (Miniconda installer included for Linux/macOS).
 
-Create a virtual environment and install dependencies:
-# using venv
+Option 2: Manual Installation
+
+
+# Create environment
 python -m venv .venv
-source .venv/bin/activate   # or .venv\Scripts\activate on Windows
+source .venv/bin/activate  # Windows: .venv\Scripts\activate
+
+# Install dependencies
 pip install -r requirements.txt
 
-# using conda
-conda create -n vocalx python=3.9
-conda activate vocalx
-pip install -r requirements.txt
 🎮 Usage
-Interactive Menu
+Interactive Mode
 
-Just run:
+Launch the main menu for a guided experience with full tab-completion:
+Bash
+
 python run.py
-1) Separate Audio
-2) System Info
-3) Convert Video to Audio
-4) Exit
-Follow the prompts – tab completion works everywhere you enter a file/folder path.
-🔄 Video to Audio Conversion
 
-Option 3 in the interactive menu converts any common video format to audio.
-You can choose output format and bitrate (for MP3).
-The output file keeps the original video name with the new extension.
+CLI Mode
 
-Supported video inputs: .mp4, .mkv, .avi, .mov, .wmv, .flv, .webm, .m4v
+Perform quick actions directly from your terminal:
+Bash
 
+# Example command 
+python cli.py separate "path/to/song.mp3" --stems 5
+
+🎬 Video to Audio
+
+Supported inputs: .mp4, .mkv, .avi, .mov, .wmv, .flv, .webm, .m4v.
+Choose your output format (.mp3, .wav, or .flac) and bitrate directly from the menu.
 📄 License
 
 This project is licensed under the MIT License.
-Spleeter models are provided by Deezer under their own license.
+Spleeter models are provided by Deezer under their respective license.
 👻 Acknowledgements
 
-    Deezer Research for the amazing Spleeter library
+    Deezer Research for the Spleeter library.
 
-    Rich, Typer, and Prompt Toolkit for making the CLI so pleasant
+    The Scary Movie Franchise for Cindy’s legendary lines.
 
-    The Scary Movie franchise for Cindy’s immortal lines
+    FFmpeg for the heavy lifting in media conversion.
