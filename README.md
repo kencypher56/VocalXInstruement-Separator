@@ -179,4 +179,4 @@ This project is licensed under the **MIT License** — see the [LICENSE](LICENSE
 <div align="center">
   <sub>Built with 👻 and way too much caffeine</sub>
 </div>
-```
+
