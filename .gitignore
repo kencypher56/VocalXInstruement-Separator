@@ -1,0 +1,51 @@
+# Python cache
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+
+# Virtual environments
+.venv/
+env/
+venv/
+vocalx/
+
+# Conda environments
+*.conda
+*.condarc
+.env/
+
+# Pretrained models (optional, if you don't want to track them)
+pretrained_models/
+
+# Logs
+*.log
+
+# OS files
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# IDE / Editor files
+.vscode/
+.idea/
+*.sublime-project
+*.sublime-workspace
+
+# Pytest / coverage
+.coverage
+htmlcov/
+.pytest_cache/
+
+# Jupyter Notebooks checkpoints
+.ipynb_checkpoints/
+
+# Backup files
+*.bak
+*.swp
+*.tmp
+
+# Ignore ffmpeg temp files
+*.wav.tmp
+*.mp3.tmp
+*.flac.tmp

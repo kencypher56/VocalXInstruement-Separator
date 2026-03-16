@@ -1,0 +1,10 @@
+spleeter==2.4.0
+librosa==0.10.1
+pydub==0.25.1
+typer[all]>=0.3.2,<0.4.0
+rich==13.7.0
+soundfile==0.12.1
+numpy==1.24.3
+scipy==1.10.1
+psutil==7.2.2
+prompt_toolkit==3.0.50 
