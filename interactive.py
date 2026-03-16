@@ -32,6 +32,7 @@ def show_banner():
 ║       AI-powered audio exorcist          ║
 ║         + Video to Audio Converter       ║
 ╚══════════════════════════════════════════╝
+            @Kencypher
     """
     console.print(banner, style="bold magenta")
     cindy_log("Okay... so like... this thing separates vocals and converts videos... or something. I'm scared.")
